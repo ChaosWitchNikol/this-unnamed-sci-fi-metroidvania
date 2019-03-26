@@ -8,3 +8,5 @@
 
 ## Stage 1
 -   [ ] 4P = Perfectly Polished Precise Platformer
+* Only Player controls
+* No enemies
