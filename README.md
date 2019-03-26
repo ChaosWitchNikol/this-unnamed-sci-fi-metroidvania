@@ -9,5 +9,8 @@
 - [ ] Player controls
 - [ ] Physics interactions
 
-## &#9744; Stage 2
--   [ ] E
+## &#9744; Stage 2 - Enemies
+- [ ] Stationary (it is Sci-Fi, so turrets)
+-   [ ] Flying 
+- [ ] Walking / Patrolling
+- [ ] Crawling (the one that can crawl up the walls)
