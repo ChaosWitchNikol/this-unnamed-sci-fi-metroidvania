@@ -6,7 +6,9 @@
 -   [x] Create default autotiling tileset
 
 ## &#9744; Stage 1 - 4P = Perfectly Polished Precise Platformer
-- [ ] Player controls
+- [x] Basic player controls
+- [ ] Polished player controls
+- [ ] Perfect player controls
 - [ ] Physics interactions
 
 ## &#9744; Stage 2 - Enemies
