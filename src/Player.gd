@@ -1,41 +1,63 @@
 extends KinematicBody2D
 
+#	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
 
-const GRAVITY : float = 9.8
-const MASS : float = 20.0
-const MOVEMENT_SPEED : int = 120
+#	GET all nodes to variables
+onready var nextJumpTimeout = get_node("NextJumpTimeout")
 
-const JUMP_FORCE : float = 70.0
-const ALLOWED_JUMPS : int = 2
+#	DEFINE static variable
+export var GRAVITY : float = 9.8
+export var MASS : float = 20.0
+export var MOVEMENT_SPEED : int = 80
+export var JUMP_FORCE : float = 90.0
+export var ALLOWED_JUMPS : int = 1
+export var NEXT_JUMP_DELAY : int = 300 setget _set_next_jump_delay
 
+#	DEFINE neccessary setget methods
+func _set_next_jump_delay(value : int) -> void:
+	NEXT_JUMP_DELAY = value
+	nextJumpTimeout.wait_time = value / 1000.0
+	
 
-
+#	DEFINE lifetime variables
 var linear_velocity : Vector2 = Vector2()
 var jumps_count : int = 0
+var can_jump = true
+
+
+
+func _ready():
+	#	CONNECT all the signals
+	nextJumpTimeout.connect("timeout", self, "_on_NextJumpTimeout_timeout")
 
 
 
 
 func _physics_process(delta : float) -> void:
-	
 	#	calculate gravity
 	linear_velocity.y +=  delta * GRAVITY * MASS
-	#	reset y when on the ground
+	
+	
 	if is_on_floor():
-		linear_velocity.y = 0
-		jumps_count = 0
+		linear_velocity.y = 0	# reset y when on the ground
+		jumps_count = 0			# reset jump count
+	
 	if is_on_ceiling():
-		linear_velocity.y = 0
+		linear_velocity.y = 0	# reset y when on the cailing
+	
 	if is_on_wall():
-		jumps_count = 0
-		if linear_velocity.y > 0:
-			linear_velocity.y = linear_velocity.y / 2.0
+		jumps_count = 0			# reset jump count
+		if linear_velocity.y > 0:	# when falling / moving downwards
+			linear_velocity.y = linear_velocity.y / 1.25	# divide linear velocity by a factor
+	
 	
 	if Input.is_action_just_pressed("ui_select"):
-		if jumps_count < ALLOWED_JUMPS:
+		if can_jump and jumps_count < ALLOWED_JUMPS :
 			linear_velocity.y = -JUMP_FORCE
 			jumps_count += 1
+			can_jump = false
+			nextJumpTimeout.start()
 		
 	
 	linear_velocity.x = 0
@@ -48,3 +70,7 @@ func _physics_process(delta : float) -> void:
 	move_and_slide(linear_velocity, FLOOR_VECTOR, true)
 
 
+
+#	DEFINE singals
+func _on_NextJumpTimeout_timeout() -> void:
+	can_jump = true

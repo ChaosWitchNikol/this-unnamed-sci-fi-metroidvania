@@ -16,3 +16,6 @@ texture = ExtResource( 2 )
 [node name="Body" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="NextJumpTimeout" type="Timer" parent="."]
+one_shot = true
+
