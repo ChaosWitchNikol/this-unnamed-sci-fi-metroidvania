@@ -12,12 +12,9 @@ export var MASS : float = 20.0
 export var MOVEMENT_SPEED : int = 80
 export var JUMP_FORCE : float = 90.0
 export var ALLOWED_JUMPS : int = 1
-export var NEXT_JUMP_DELAY : int = 300 setget _set_next_jump_delay
+export var NEXT_JUMP_DELAY : int = 100
 
-#	DEFINE neccessary setget methods
-func _set_next_jump_delay(value : int) -> void:
-	NEXT_JUMP_DELAY = value
-	nextJumpTimeout.wait_time = value / 1000.0
+
 	
 
 #	DEFINE lifetime variables
@@ -57,7 +54,7 @@ func _physics_process(delta : float) -> void:
 			linear_velocity.y = -JUMP_FORCE
 			jumps_count += 1
 			can_jump = false
-			nextJumpTimeout.start()
+			nextJumpTimeout.start(NEXT_JUMP_DELAY / 1000.0)
 		
 	
 	linear_velocity.x = 0
