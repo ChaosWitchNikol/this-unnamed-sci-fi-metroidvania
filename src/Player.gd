@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 #	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
+const SNAP_VECTOR : Vector2 = Vector2(0, 16)
+const MAX_SLOPE_DEGREE : float = deg2rad(60)
+const JUMP_SNAP_VECTOR : Vector2 = Vector2(0, 0)
 
 #	GET all nodes to variables
 onready var nextJumpTimeout = get_node("NextJumpTimeout")
@@ -34,6 +37,8 @@ func _ready():
 func _physics_process(delta : float) -> void:
 	#	calculate gravity
 	linear_velocity.y +=  delta * GRAVITY * MASS
+	#	set snap vector
+	var snap_vector : Vector2 = SNAP_VECTOR
 	
 	
 	if is_on_floor():
@@ -55,6 +60,7 @@ func _physics_process(delta : float) -> void:
 			jumps_count += 1
 			can_jump = false
 			nextJumpTimeout.start(NEXT_JUMP_DELAY / 1000.0)
+			snap_vector = JUMP_SNAP_VECTOR
 		
 	
 	linear_velocity.x = 0
@@ -64,7 +70,7 @@ func _physics_process(delta : float) -> void:
 		linear_velocity.x = MOVEMENT_SPEED
 	
 	
-	move_and_slide(linear_velocity, FLOOR_VECTOR, true)
+	move_and_slide_with_snap(linear_velocity, snap_vector, FLOOR_VECTOR, true, 4, MAX_SLOPE_DEGREE, false)
 
 
 
