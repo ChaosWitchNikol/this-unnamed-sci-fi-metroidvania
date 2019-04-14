@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://base.tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MovingPlatformPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assests/tilesets/base.tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/MovingPlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/MovingPlatformPoint.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D"]
 

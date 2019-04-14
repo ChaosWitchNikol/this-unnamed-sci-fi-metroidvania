@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Object",
+"class": "Const",
+"language": "GDScript",
+"path": "res://utils/Constants.gd"
+}, {
 "base": "Position2D",
 "class": "MovingPlatformPoint",
 "language": "GDScript",
-"path": "res://MovingPlatformPoint.gd"
+"path": "res://scripts/MovingPlatformPoint.gd"
 }, {
 "base": "Object",
 "class": "Utils",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://utils/Utils.gd"
 } ]
 _global_script_class_icons={
+"Const": "",
 "MovingPlatformPoint": "",
 "Utils": ""
 }
