@@ -1,14 +1,14 @@
 tool
 extends Node2D
 
-const PointScene = preload("res://MovingPlatformPoint.tscn")
+const PointScene : PackedScene = preload("res://scenes/MovingPlatformPoint.tscn")
 
+onready var Tiles : TileMap = get_node("Body/Tiles")
 
 #	export variables
 export var MOVEMENT_SPEED : float = 40.0
-export var ONE_WAY_COLLISION : bool = false 
-export (int, 2, 16) var SIZE_X : int = 4
-export (int, 1, 4) var SIZE_Y : int = 1
+export var ONE_WAY_COLLISION : bool = false setget __set_one_way_collision
+export (int, 2, 16) var SIZE_X : int = 4 setget __set_size_x
 
 #	point variables
 var all_points : Array
@@ -30,6 +30,9 @@ func _ready() -> void:
 	
 	# set statrting moving direction
 	set_direction_vector()
+	
+	#	set tiles
+	set_tiles()
 
 
 
@@ -50,6 +53,18 @@ func set_next_target_point():
 		next_point_index = 0
 
 
+func set_tiles() -> void:
+	var tiles : TileMap = get_node("Body/Tiles")
+	tiles.size_x = SIZE_X * Const.TILE_SIZE
+	tiles.one_way = ONE_WAY_COLLISION
+
+func __set_one_way_collision(value : bool) -> void:
+	ONE_WAY_COLLISION = value
+	set_tiles()
+func __set_size_x(value : int) -> void:
+	SIZE_X = value
+	set_tiles()
+	
 
 
 

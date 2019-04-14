@@ -4,7 +4,7 @@ onready var P = get_owner()
 
 func _ready():
 	$Collision.shape.extents.x = P.SIZE_X * Const.TILE_HALF_SIZE
-	$Collision.shape.extents.y = P.SIZE_Y * Const.TILE_HALF_SIZE
+	$Collision.shape.extents.y = Const.TILE_HALF_SIZE
 	$Collision.one_way_collision = P.ONE_WAY_COLLISION
 
 func _physics_process(delta):
