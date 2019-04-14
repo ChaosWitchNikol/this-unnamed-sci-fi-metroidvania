@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Position2D",
+"class": "MovingPlatformPoint",
+"language": "GDScript",
+"path": "res://MovingPlatformPoint.gd"
+}, {
+"base": "Object",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://utils/Utils.gd"
+} ]
 _global_script_class_icons={
-
+"MovingPlatformPoint": "",
+"Utils": ""
 }
 
 [application]
