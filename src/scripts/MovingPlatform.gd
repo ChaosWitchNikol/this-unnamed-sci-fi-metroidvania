@@ -1,70 +1,59 @@
-tool
-extends Node2D
+extends KinematicBody2D
+class_name MovingPlatform
 
-const PointScene : PackedScene = preload("res://scenes/MovingPlatformPoint.tscn")
+var points : Array = Array()
+var target_point_index : int = 0
 
-onready var Tiles : TileMap = get_node("Body/Tiles")
-
-#	export variables
-export var MOVEMENT_SPEED : float = 40.0
-export var ONE_WAY_COLLISION : bool = false setget __set_one_way_collision
-export (int, 2, 16) var SIZE_X : int = 4 setget __set_size_x
-
-#	point variables
-var all_points : Array
-var current_point_index : int = 0
-var next_point_index : int = 1
-
-#	lifetime variables
 var direction : Vector2 = Vector2()
+var move_speed : float = 0
 
 func _ready() -> void:
-	# create starting point
-	var point = PointScene.instance()
-	point.set_as_start()
-	add_child(point)
+	var parent = get_parent()
+	if parent and parent.get("class_type") == "MovingPlatformContainer":
+		points = parent.get_points_positions()
+		parent.clear_points()
+		move_speed = parent.MOVEMENT_SPEED
+		setup_collision(parent)
+		setup_tilemap(parent)
+		next_target_point()
+
+
+func _physics_process(delta) -> void:
+	if points.size() > 1:
+		position += direction * move_speed * delta
+		if position.distance_to(points[target_point_index]) < 0.5:
+			next_target_point()
+
+
+func next_target_point():
+	target_point_index += 1
+	if target_point_index > points.size() - 1:
+		target_point_index = 0
+	direction = (points[target_point_index] - position).normalized()
+
+
+func setup_collision(parent : Node2D) -> void:
+	# first set new extent size
+	$Collision.shape.extents.x = parent.TILE_WIDTH * Const.TILE_HALF_SIZE
+	# second set one way collision
+	$Collision.set_one_way_collision(parent.ONE_WAY_COLLISION)
+
+func setup_tilemap(parent : Node2D) -> void:
+	$Tiles.clear()
+	$Tiles.position.x = - parent.TILE_WIDTH * Const.TILE_HALF_SIZE
+	var tile_offset = 3
+	if parent.ONE_WAY_COLLISION:
+		tile_offset = 0
+	var platform_width = parent.TILE_WIDTH * Const.TILE_SIZE
 	
-	# get all points and sort them by order number
-	all_points = Utils.get_node_children_by_type(self, "Position2D")
-	all_points = Utils.sort_nodes_by_order_number(all_points)
+	#	set left edge tile
+	$Tiles.set_cell(0, 0, tile_offset)
+	#	set right edge tile
+	$Tiles.set_cell(parent.TILE_WIDTH - 1, 0, tile_offset, true)
 	
-	# set statrting moving direction
-	set_direction_vector()
-	
-	#	set tiles
-	set_tiles()
-
-
-
-func get_next_point_position() -> Vector2:
-	return all_points[next_point_index].position
-
-func set_direction_vector():
-	direction = all_points[next_point_index].global_position - all_points[current_point_index].global_position 
-	direction = direction.normalized()
-
-func set_next_target_point():
-	current_point_index += 1
-	if current_point_index >= all_points.size():
-		current_point_index = 0
-	
-	next_point_index = current_point_index + 1
-	if next_point_index >= all_points.size():
-		next_point_index = 0
-
-
-func set_tiles() -> void:
-	var tiles : TileMap = get_node("Body/Tiles")
-	tiles.size_x = SIZE_X * Const.TILE_SIZE
-	tiles.one_way = ONE_WAY_COLLISION
-
-func __set_one_way_collision(value : bool) -> void:
-	ONE_WAY_COLLISION = value
-	set_tiles()
-func __set_size_x(value : int) -> void:
-	SIZE_X = value
-	set_tiles()
-	
-
+	#	set middle tiles
+	if parent.TILE_WIDTH > 2:
+		for index in range(1, parent.TILE_WIDTH - 1):
+			$Tiles.set_cell(index, 0, tile_offset + 1)
 
 

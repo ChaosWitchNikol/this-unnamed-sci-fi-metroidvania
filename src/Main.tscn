@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assests/tilesets/base.tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/MovingPlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/MovingPlatformPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/MovingPlatform.container.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/MovingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/MovingPlatform.point.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 
@@ -24,23 +25,12 @@ current = true
 
 [node name="platforms" type="Node" parent="."]
 
-[node name="PlatformMooving" parent="platforms" instance=ExtResource( 3 )]
-position = Vector2( 240, 128 )
-ONE_WAY_COLLISION = true
+[node name="MovingPlatformContainer" parent="platforms" instance=ExtResource( 3 )]
+position = Vector2( 224, 120 )
+TILE_WIDTH = 4
 
-[node name="MoovingPlatformPoint" parent="platforms/PlatformMooving" instance=ExtResource( 4 )]
+[node name="MovingPlatform" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
+
+[node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer" instance=ExtResource( 5 )]
 position = Vector2( 0, 80 )
-COLOR = Color( 1, 1, 1, 1 )
-
-[node name="PlatformMooving2" parent="platforms" instance=ExtResource( 3 )]
-position = Vector2( 696, 152 )
-
-[node name="MoovingPlatformPoint" parent="platforms/PlatformMooving2" instance=ExtResource( 4 )]
-position = Vector2( 176, 0 )
-COLOR = Color( 1, 1, 1, 1 )
-
-[node name="MoovingPlatformPoint2" parent="platforms/PlatformMooving2" instance=ExtResource( 4 )]
-position = Vector2( 96, -40 )
-ORDER_NUMBER = 2
-COLOR = Color( 1, 1, 1, 1 )
 

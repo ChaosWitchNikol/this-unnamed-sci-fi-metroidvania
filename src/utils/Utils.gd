@@ -11,6 +11,14 @@ static func get_node_children_by_type(parent_node : Node, type : String) -> Arra
 	
 	return found_children
 
+static func get_node_children_by_class_type(parent_node : Node, class_type : String) -> Array:
+	var found_children = Array()
+	
+	for child in parent_node.get_children():
+		if child.get("class_type") == class_type:
+			found_children.append(child)
+	
+	return found_children
 
 
 
