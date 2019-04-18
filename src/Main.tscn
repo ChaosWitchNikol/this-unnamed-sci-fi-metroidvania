@@ -34,7 +34,3 @@ width = 4
 position = Vector2( 0, 80 )
 order_priority = 1
 
-[node name="MovingPlatformPoint3" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
-position = Vector2( 64, 24 )
-order_priority = 1
-

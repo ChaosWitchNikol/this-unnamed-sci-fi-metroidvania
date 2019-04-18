@@ -15,3 +15,10 @@ static func sort_node_by_order_priority(nodes : Array) -> Array:
 	return nodes
 
 
+static func node_array_to_string(nodes : Array) -> String:
+	var nodes_string = ""
+	
+	for node in nodes:
+		nodes_string += node.name
+	
+	return nodes_string

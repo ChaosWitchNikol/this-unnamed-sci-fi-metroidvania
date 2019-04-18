@@ -15,6 +15,7 @@ func setup(points : Array, width : int, movement_speed : float, one_way_collisio
 	move_speed = movement_speed
 	setup_collision(width, one_way_collision)
 	setup_tilemap(width, one_way_collision)
+	position = self.points[target_point_index]
 
 func _physics_process(delta) -> void:
 	if points.size() > 1:
@@ -42,7 +43,6 @@ func setup_tilemap(width : int, one_way_collision : bool) -> void:
 	var tile_offset = 3
 	if one_way_collision:
 		tile_offset = 0
-	var platform_width = width * Const.TILE_SIZE
 	
 	#	set left edge tile
 	$Tiles.set_cell(0, 0, tile_offset)

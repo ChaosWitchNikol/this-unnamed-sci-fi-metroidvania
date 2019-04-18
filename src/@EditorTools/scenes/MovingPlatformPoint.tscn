@@ -18,11 +18,20 @@ script = ExtResource( 1 )
 position = Vector2( 0, 4 )
 scale = Vector2( 2, 1 )
 
-[node name="Label" type="Label" parent="."]
+[node name="OrderPriorityLabel" type="Label" parent="."]
 margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
+margin_bottom = 8.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
+valign = 1
+
+[node name="OrderIndexLabel" type="Label" parent="."]
+self_modulate = Color( 1, 1, 1, 0.705882 )
+margin_right = 8.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 2 )
+text = "-1"
+align = 1
+valign = 1
 
