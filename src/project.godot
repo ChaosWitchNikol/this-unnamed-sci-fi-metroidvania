@@ -14,20 +14,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://utils/Constants.gd"
 }, {
+"base": "Node2D",
+"class": "EdiToolMovingPlatformContainer",
+"language": "GDScript",
+"path": "res://@EditorTools/scripts/MovingPlatformContainer.gd"
+}, {
+"base": "Node2D",
+"class": "EdiToolMovingPlatformPoint",
+"language": "GDScript",
+"path": "res://@EditorTools/scripts/MovingPlatformPoint.gd"
+}, {
+"base": "Object",
+"class": "EdiTools",
+"language": "GDScript",
+"path": "res://@EditorTools/EdiTools.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "MovingPlatform",
 "language": "GDScript",
 "path": "res://scripts/MovingPlatform.gd"
-}, {
-"base": "Node2D",
-"class": "MovingPlatformContainer",
-"language": "GDScript",
-"path": "res://scripts/MovingPlatform.container.gd"
-}, {
-"base": "Node2D",
-"class": "MovingPlatformPoint",
-"language": "GDScript",
-"path": "res://scripts/MovingPlatform.point.gd"
 }, {
 "base": "Object",
 "class": "Utils",
@@ -36,9 +41,10 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Const": "",
+"EdiToolMovingPlatformContainer": "",
+"EdiToolMovingPlatformPoint": "",
+"EdiTools": "",
 "MovingPlatform": "",
-"MovingPlatformContainer": "",
-"MovingPlatformPoint": "",
 "Utils": ""
 }
 

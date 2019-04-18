@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assests/tilesets/base.tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/MovingPlatform.container.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/MovingPlatform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/MovingPlatform.point.tscn" type="PackedScene" id=5]
+[ext_resource path="res://@EditorTools/scenes/MovingPlatformContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://@EditorTools/scenes/MovingPlatformPoint.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D"]
 
@@ -27,10 +26,15 @@ current = true
 
 [node name="MovingPlatformContainer" parent="platforms" instance=ExtResource( 3 )]
 position = Vector2( 224, 120 )
-TILE_WIDTH = 4
+width = 4
 
-[node name="MovingPlatform" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
+[node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
 
-[node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer" instance=ExtResource( 5 )]
+[node name="MovingPlatformPoint2" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
 position = Vector2( 0, 80 )
+order_priority = 1
+
+[node name="MovingPlatformPoint3" parent="platforms/MovingPlatformContainer" instance=ExtResource( 4 )]
+position = Vector2( 64, 24 )
+order_priority = 1
 
