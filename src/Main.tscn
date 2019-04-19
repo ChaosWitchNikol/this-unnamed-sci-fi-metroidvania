@@ -33,7 +33,7 @@ order_priority = 2
 [node name="MovingPlatformContainer2" parent="platforms" instance=ExtResource( 2 )]
 position = Vector2( 616, 208 )
 width = 4
-movement_speed = 60.0
+movement_speed = 70.0
 color = Color( 0, 0.670588, 1, 1 )
 
 [node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer2" instance=ExtResource( 3 )]

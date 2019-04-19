@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 #	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
-const SNAP_VECTOR : Vector2 = Vector2(0, 4)
+const SNAP_VECTOR : Vector2 = Vector2(0, 6)
 const MAX_SLOPE_DEGREE : float = deg2rad(50)
 const JUMP_SNAP_VECTOR : Vector2 = Vector2(0, 0)
 

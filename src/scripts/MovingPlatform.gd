@@ -8,7 +8,11 @@ var move_speed : float = 0
 
 var direction : Vector2 = Vector2()
 
+var min_distance_reached := true
 
+func _ready():
+	next_target_point()
+	min_distance_reached = false
 
 func setup(points : Array, width : int, movement_speed : float, one_way_collision : bool = true) -> void:
 	self.points = points
@@ -20,8 +24,14 @@ func setup(points : Array, width : int, movement_speed : float, one_way_collisio
 func _physics_process(delta) -> void:
 	if points.size() > 1:
 		position += direction * move_speed * delta
-		if position.distance_to(points[target_point_index]) < 0.5:
-			next_target_point()
+			
+		if not min_distance_reached:
+			if position.distance_to(points[target_point_index]) < 1:
+				min_distance_reached = true
+		else:
+			if position.distance_to(points[target_point_index]) > 1:
+				next_target_point()
+				min_distance_reached = false
 
 
 func next_target_point():
@@ -34,7 +44,10 @@ func next_target_point():
 func setup_collision(width : int, one_way_collision : bool) -> void:
 	# first set new extent size
 	$Collision.shape.extents.x = width * Const.TILE_HALF_SIZE
-	# second set one way collision
+	# this will make collsion shape unique for each platfor
+	# because collision shapes seems to be shared across all same nodes
+	$Collision.shape = $Collision.shape.duplicate()
+	# second set one way collision	
 	$Collision.set_one_way_collision(one_way_collision)
 
 func setup_tilemap(width : int, one_way_collision : bool) -> void:
