@@ -12,7 +12,6 @@ export var color : Color = "#FFFFFF" setget set_color
 
 var points : Array
 
-var children_string : String = ""
 
 func set_width(value : int) -> void:
 	width = value
@@ -40,10 +39,6 @@ func _exit_tree():
 	if not Engine.editor_hint:
 		setup_platform()
 		
-
-func _physics_process(delta) -> void:
-	if not Engine.editor_hint:
-		return
 
 func update_points() -> void:
 	for point in get_points():

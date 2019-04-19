@@ -3,7 +3,7 @@ extends KinematicBody2D
 #	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
 const SNAP_VECTOR : Vector2 = Vector2(0, 8)
-const MAX_SLOPE_DEGREE : float = deg2rad(46)
+const MAX_SLOPE_DEGREE : float = deg2rad(50)
 const JUMP_SNAP_VECTOR : Vector2 = Vector2(0, 0)
 
 #	GET all nodes to variables
@@ -36,7 +36,7 @@ func _ready():
 
 func _physics_process(delta : float) -> void:
 	#	calculate gravity
-	linear_velocity.y +=  delta * GRAVITY * MASS
+	process_gravity(delta)
 	#	set snap vector
 	var snap_vector : Vector2 = SNAP_VECTOR
 	
@@ -49,6 +49,7 @@ func _physics_process(delta : float) -> void:
 		jumps_count = 0			# reset jump count
 		if linear_velocity.y > 0:	# when falling / moving downwards
 			linear_velocity.y = linear_velocity.y / 1.25	# divide linear velocity by a factor
+	
 	
 	
 	if Input.is_action_just_pressed("ui_select"):
@@ -70,10 +71,16 @@ func _physics_process(delta : float) -> void:
 		snap_vector.x += 8
 	if $RayLeft.is_colliding():
 		snap_vector.x -= 8
-		
+	
+	if is_on_ceiling():
+		linear_velocity.y += GRAVITY
 		
 	linear_velocity = move_and_slide_with_snap(linear_velocity, snap_vector, FLOOR_VECTOR, true, 5, MAX_SLOPE_DEGREE, false)
+	
+	
 
+func process_gravity(delta : float) -> void:
+	linear_velocity.y += GRAVITY * MASS * delta
 
 
 #	DEFINE singals

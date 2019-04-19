@@ -1,6 +1,7 @@
 extends Object
 class_name EdiTools
 
+
 var SmallBitFont = load("res://@EditorTools/SmallNumBit.ttf")
 
 
