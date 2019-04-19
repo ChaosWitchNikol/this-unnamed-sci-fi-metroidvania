@@ -8,6 +8,8 @@ radius = 4.0
 height = 8.0
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( -1, 0 )
+collision/safe_margin = 0.005
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,14 +20,4 @@ shape = SubResource( 1 )
 
 [node name="NextJumpTimeout" type="Timer" parent="."]
 one_shot = true
-
-[node name="RayRight" type="RayCast2D" parent="."]
-position = Vector2( 4, 0 )
-enabled = true
-cast_to = Vector2( 0, 8.1 )
-
-[node name="RayLeft" type="RayCast2D" parent="."]
-position = Vector2( -4, 0 )
-enabled = true
-cast_to = Vector2( 0, 8.1 )
 
