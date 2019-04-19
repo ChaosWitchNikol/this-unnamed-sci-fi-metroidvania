@@ -18,7 +18,7 @@ export var ALLOWED_JUMPS : int = 1
 export var NEXT_JUMP_DELAY : int = 100
 
 
-	
+
 
 #	DEFINE lifetime variables
 var linear_velocity : Vector2 = Vector2()
@@ -45,15 +45,10 @@ func _physics_process(delta : float) -> void:
 		linear_velocity.y = 0	# reset y when on the ground
 		jumps_count = 0			# reset jump count
 	
-	if is_on_ceiling():
-		linear_velocity.y = 0	# reset y when on the cailing
-	
 	if is_on_wall():
 		jumps_count = 0			# reset jump count
 		if linear_velocity.y > 0:	# when falling / moving downwards
 			linear_velocity.y = linear_velocity.y / 1.25	# divide linear velocity by a factor
-	
-	
 	
 	
 	if Input.is_action_just_pressed("ui_select"):
@@ -63,7 +58,6 @@ func _physics_process(delta : float) -> void:
 			can_jump = false
 			nextJumpTimeout.start(NEXT_JUMP_DELAY / 1000.0)
 			snap_vector = JUMP_SNAP_VECTOR
-		
 	
 	linear_velocity.x = 0
 	if Input.is_action_pressed("ui_left"):
@@ -79,8 +73,7 @@ func _physics_process(delta : float) -> void:
 		
 		
 	linear_velocity = move_and_slide_with_snap(linear_velocity, snap_vector, FLOOR_VECTOR, true, 5, MAX_SLOPE_DEGREE, false)
-	
-	
+
 
 
 #	DEFINE singals
