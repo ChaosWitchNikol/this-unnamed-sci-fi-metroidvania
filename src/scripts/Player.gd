@@ -3,7 +3,7 @@ extends KinematicBody2D
 #	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
 const SNAP_VECTOR : Vector2 = Vector2(0, 8)
-const MAX_SLOPE_DEGREE : float = deg2rad(60)
+const MAX_SLOPE_DEGREE : float = deg2rad(46)
 const JUMP_SNAP_VECTOR : Vector2 = Vector2(0, 0)
 
 #	GET all nodes to variables
@@ -54,6 +54,8 @@ func _physics_process(delta : float) -> void:
 			linear_velocity.y = linear_velocity.y / 1.25	# divide linear velocity by a factor
 	
 	
+	
+	
 	if Input.is_action_just_pressed("ui_select"):
 		if can_jump and jumps_count < ALLOWED_JUMPS :
 			linear_velocity.y = -JUMP_FORCE
@@ -69,9 +71,16 @@ func _physics_process(delta : float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		linear_velocity.x = MOVEMENT_SPEED
 	
+	# calculate snap_vector x component based on
+	if $RayRight.is_colliding():
+		snap_vector.x += 8
+	if $RayLeft.is_colliding():
+		snap_vector.x -= 8
+		
+		
+	linear_velocity = move_and_slide_with_snap(linear_velocity, snap_vector, FLOOR_VECTOR, true, 5, MAX_SLOPE_DEGREE, false)
 	
-	move_and_slide_with_snap(linear_velocity, snap_vector, FLOOR_VECTOR, true, 4, MAX_SLOPE_DEGREE, false)
-
+	
 
 
 #	DEFINE singals
