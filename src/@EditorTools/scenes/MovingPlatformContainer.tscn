@@ -8,6 +8,5 @@ script = ExtResource( 1 )
 color = Color( 1, 1, 1, 1 )
 
 [node name="InvisibleSpriteMask" parent="." instance=ExtResource( 2 )]
-position = Vector2( 9.53674e-07, 4 )
-scale = Vector2( 4, 5 )
+scale = Vector2( 4, 4 )
 

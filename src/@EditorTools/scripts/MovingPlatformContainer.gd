@@ -72,7 +72,40 @@ func get_ordered_points_positions() -> Array:
 func _draw() -> void:
 	if not Engine.editor_hint:
 		return
-	draw_rect(Rect2(-16, -16, 32 , 32), color, false)
+	
+	var sc : Sprite = get_node("InvisibleSpriteMask").scale
+	
+	var col : Color = color
+	col.a = 0.6
+	
+	var half = Const.TILE_HALF_SIZE
+	var size = Const.TILE_SIZE
+	
+	var top_left := Vector2(-sc.x * half, -sc.y * half)
+	var top_right := Vector2(sc.x * half, -sc.y * half)
+	var bot_left := Vector2(-sc.x * half, sc.y * half)
+	var bot_right := Vector2(sc.x * half, sc.y * half)
+
+	var horizontal := Vector2(size, 0)
+	var vertical := Vector2(0, size)
+
+	#	left top corner
+	draw_line(top_left, top_left + horizontal, col, 1.001)
+	draw_line(top_left, top_left + vertical, col, 1.001)
+	
+	#	right top corner
+	draw_line(top_right, top_right - horizontal, col, 1.001)
+	draw_line(top_right, top_right + vertical, col, 1.001)
+	
+	#	left bottom corner
+	draw_line(bot_left, bot_left + horizontal, col, 1.001)
+	draw_line(bot_left, bot_left - vertical, col, 1.001)
+	
+	#	right bottom corner
+	draw_line(bot_right, bot_right - horizontal, col, 1.001)
+	draw_line(bot_right, bot_right - vertical, col, 1.001)
+		
+	
 
 
 
