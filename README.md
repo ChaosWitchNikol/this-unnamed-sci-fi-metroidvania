@@ -7,9 +7,9 @@
 
 ## &#9744; Stage 1 - 4P = Perfectly Polished Precise Platformer
 - [x] Basic player controls
-- [ ] Polished player controls
+- [x] Polished player controls
 - [ ] Perfect player controls
-- [ ] Physics interactions
+- [x] Physics interactions
 
 ## &#9744; Stage 2 - Enemies
 - [ ] Stationary (it is Sci-Fi, so turrets)
