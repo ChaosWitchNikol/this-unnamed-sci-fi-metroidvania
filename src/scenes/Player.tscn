@@ -8,7 +8,6 @@ radius = 4.0
 height = 8.0
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( -1, 0 )
 collision/safe_margin = 0.005
 script = ExtResource( 1 )
 
