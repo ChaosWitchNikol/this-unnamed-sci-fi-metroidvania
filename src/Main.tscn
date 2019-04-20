@@ -21,10 +21,12 @@ current = true
 [node name="MovingPlatformContainer" parent="platforms" instance=ExtResource( 2 )]
 position = Vector2( 388, 208 )
 width = 5
+movement_speed = 40.0
 color = Color( 1, 0.560784, 0, 1 )
 
 [node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer" instance=ExtResource( 3 )]
 position = Vector2( -24, -56 )
+order_priority = 0
 
 [node name="MovingPlatformPoint2" parent="platforms/MovingPlatformContainer" instance=ExtResource( 3 )]
 position = Vector2( -24, 48 )
@@ -38,6 +40,7 @@ color = Color( 0, 0.670588, 1, 1 )
 
 [node name="MovingPlatformPoint" parent="platforms/MovingPlatformContainer2" instance=ExtResource( 3 )]
 position = Vector2( -24, -192 )
+order_priority = 0
 
 [node name="MovingPlatformPoint2" parent="platforms/MovingPlatformContainer2" instance=ExtResource( 3 )]
 position = Vector2( -24, 48 )
