@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://@EditorTools/GrabMask.png" type="Texture" id=1]
+
+[node name="InvisibleSpriteMask" type="Sprite"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 1 )
+

@@ -8,9 +8,44 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Object",
+"class": "Const",
+"language": "GDScript",
+"path": "res://utils/Constants.gd"
+}, {
+"base": "Node2D",
+"class": "EdiToolMovingPlatformContainer",
+"language": "GDScript",
+"path": "res://@EditorTools/scripts/MovingPlatformContainer.gd"
+}, {
+"base": "Node2D",
+"class": "EdiToolMovingPlatformPoint",
+"language": "GDScript",
+"path": "res://@EditorTools/scripts/MovingPlatformPoint.gd"
+}, {
+"base": "Object",
+"class": "EdiTools",
+"language": "GDScript",
+"path": "res://@EditorTools/EdiTools.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MovingPlatform",
+"language": "GDScript",
+"path": "res://scripts/MovingPlatform.gd"
+}, {
+"base": "Object",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://utils/Utils.gd"
+} ]
 _global_script_class_icons={
-
+"Const": "",
+"EdiToolMovingPlatformContainer": "",
+"EdiToolMovingPlatformPoint": "",
+"EdiTools": "",
+"MovingPlatform": "",
+"Utils": ""
 }
 
 [application]
