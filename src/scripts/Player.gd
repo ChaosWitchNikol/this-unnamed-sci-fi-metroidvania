@@ -80,3 +80,6 @@ func process_gravity(delta : float) -> void:
 #	DEFINE singals
 func _on_NextJumpTimeout_timeout() -> void:
 	can_jump = true
+
+
+
