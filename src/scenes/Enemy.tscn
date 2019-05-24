@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 [node name="ViewAreaShape" type="CollisionShape2D" parent="ViewArea"]
 shape = SubResource( 2 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -20,14 +20,12 @@ func set_order_priority(value : int) -> void:
 
 func set_width(value : int) -> void:
 	width = value
-	#warning-ignore:integer_division
-	$GrabMask.scale.x = value / 8
+	$GrabMask.scale.x = value / 8.0
 	update()
 
 func set_height(value : int) -> void:
 	height = value
-#warning-ignore:integer_division
-	$GrabMask.scale.y = value / 8
+	$GrabMask.scale.y = value / 8.0
 	update()
 
 func set_color(value : Color) -> void:
