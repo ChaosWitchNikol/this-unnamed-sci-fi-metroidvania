@@ -62,6 +62,11 @@ func process_gravity(delta) -> void:
 func process_movement(delta) -> void:
 	pass
 
+#	life
+func flip_facing() -> void:
+	facing = FacingDirs.flip_h(facing)
+
+
 ################################
 #	Setters
 func set_gravity_vector(value : Vector2 = Vector2(0, 1)) -> void:
@@ -71,6 +76,8 @@ func set_gravity_vector(value : Vector2 = Vector2(0, 1)) -> void:
 
 func set_facing(value: int = FacingDirs.RIGHT) -> void:
 	facing = value
+	if SpriteNode:
+		SpriteNode.flip_h = FacingDirs.get_h_flip(facing)
 
 
 

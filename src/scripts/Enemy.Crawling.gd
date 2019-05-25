@@ -20,7 +20,7 @@ var motion : Vector2 = Vector2()
 var touched_ground : bool = false
 
 func _ready() -> void:
-	_set_snout_facing(facing)
+#	_set_snout_facing(facing)
 	calc_crawl_vector()
 
 func _physics_process(delta: float) -> void:

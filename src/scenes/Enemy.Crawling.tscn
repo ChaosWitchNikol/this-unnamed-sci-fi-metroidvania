@@ -17,7 +17,7 @@ texture = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="Snout" type="RayCast2D" parent="." index="5"]
-position = Vector2( -1, 0 )
+position = Vector2( -2, 0 )
 enabled = true
 cast_to = Vector2( 0, 6 )
 collide_with_areas = true

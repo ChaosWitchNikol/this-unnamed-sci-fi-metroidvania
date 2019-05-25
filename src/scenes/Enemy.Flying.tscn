@@ -17,3 +17,5 @@ texture = ExtResource( 3 )
 [node name="Body" parent="." index="1"]
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="Navigation2D" type="Navigation2D" parent="." index="5"]

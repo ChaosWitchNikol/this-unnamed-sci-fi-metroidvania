@@ -5,3 +5,16 @@
 
 [node name="EnemyWalking" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="ViewArea" parent="." index="3"]
+editor/display_folded = true
+
+[node name="FeelGround" type="RayCast2D" parent="." index="5"]
+position = Vector2( 5, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="FeelFront" type="RayCast2D" parent="." index="6"]
+position = Vector2( 5, 0 )
+enabled = true
+cast_to = Vector2( 2, 0 )
