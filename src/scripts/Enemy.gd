@@ -12,6 +12,8 @@ onready var NextAttackTimeout : Timer = get_node("NextAttackTimeout")
 onready var ViewArea : Area2D = get_node("ViewArea")
 onready var SpriteNode : Sprite = get_node("Sprite")
 
+onready var ViewAreaShape : CollisionShape2D = get_node("ViewArea/ViewAreaShape")
+
 ################################
 #	Life variables
 export var passive : bool = false 
@@ -44,6 +46,7 @@ var linear_velocity : Vector2 = Vector2()
 func _ready() -> void:
 	print(">>> enemy ", name, " ready")
 	SpriteNode.flip_h = FacingDirs.get_h_flip(facing)
+	ViewAreaShape.shape.radius = view_distance
 
 func _physics_process(delta) -> void:
 	process_movement(delta)

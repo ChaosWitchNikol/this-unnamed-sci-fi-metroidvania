@@ -2,12 +2,8 @@
 
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assests/images/enemy-tall.png" type="Texture" id=2]
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 4.0
-height = 8.0
-
-[sub_resource type="CircleShape2D" id=2]
+[ext_resource path="res://assests/collisions/bodies/Enemy.body.tres" type="Shape2D" id=3]
+[ext_resource path="res://assests/collisions/views/Enemy.view.tres" type="Shape2D" id=4]
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -16,13 +12,13 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = ExtResource( 3 )
 
 [node name="NextAttackTimeout" type="Timer" parent="."]
 
 [node name="ViewArea" type="Area2D" parent="."]
 
 [node name="ViewAreaShape" type="CollisionShape2D" parent="ViewArea"]
-shape = SubResource( 2 )
+shape = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

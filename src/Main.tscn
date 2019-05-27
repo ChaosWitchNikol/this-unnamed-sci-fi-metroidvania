@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://@EditorTools/scenes/MovingPlatformContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://@EditorTools/scenes/MovingPlatformPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assests/tilesets/base.tileset.tres" type="TileSet" id=4]
-[ext_resource path="res://scenes/Enemy.Walking.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EnemyWalking.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EnemyFlying.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D"]
 
@@ -56,3 +57,6 @@ tile_data = PoolIntArray( -327608, 5, 0, -327607, 5, 0, -327606, 5, 0, -327605, 
 
 [node name="EnemyWalking" parent="enemies" instance=ExtResource( 5 )]
 position = Vector2( 128, 160 )
+
+[node name="EnemyFlying" parent="enemies" instance=ExtResource( 6 )]
+position = Vector2( 224, 144 )
