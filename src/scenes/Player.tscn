@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assests/images/player.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Player.HurtBox.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.0
 height = 8.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 8 )
 
 [node name="Player" type="KinematicBody2D"]
 collision/safe_margin = 0.005
@@ -20,3 +24,9 @@ shape = SubResource( 1 )
 [node name="NextJumpTimeout" type="Timer" parent="."]
 one_shot = true
 
+[node name="HurtBox" type="Area2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource( 2 )

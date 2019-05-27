@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 #	Custom functions
 #	processors
 ##	@Override
-func process_movement(delta) -> void:
+func process_movement(delta : float) -> void:
 	process_rotation()
 	motion = Vector2()
 	motion = crawl_vector * MOVEMENT_SPEED

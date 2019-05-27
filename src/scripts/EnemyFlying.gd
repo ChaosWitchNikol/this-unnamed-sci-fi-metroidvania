@@ -3,8 +3,19 @@ class_name EnemyFlying
 
 ################################
 #	Nodes variables
-onready var Nav : Navigation2D = get_node("Nav")
+
+
+################################
+#	Other variables
+var nav_points : PoolVector2Array = []
+
 
 func _ready() -> void:
 	apply_gravity = false
+	print(nav_points)
+
+
+
+
+
 

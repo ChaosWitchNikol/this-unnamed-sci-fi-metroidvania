@@ -39,6 +39,7 @@ export(int, -1, 1, 2) var facing : int = FacingDirs.RIGHT setget set_facing
 ################################
 #	Other variables
 var linear_velocity : Vector2 = Vector2()
+var player_to_follow : Player = null
 
 
 
@@ -47,8 +48,9 @@ func _ready() -> void:
 	print(">>> enemy ", name, " ready")
 	SpriteNode.flip_h = FacingDirs.get_h_flip(facing)
 	ViewAreaShape.shape.radius = view_distance
+	ViewArea.connect("area_entered", self, "_on_ViewArea_entered")
 
-func _physics_process(delta) -> void:
+func _physics_process(delta : float) -> void:
 	process_movement(delta)
 	process_gravity(delta)
 	
@@ -57,12 +59,12 @@ func _physics_process(delta) -> void:
 ################################
 #	Custom functions
 #	processors
-func process_gravity(delta) -> void:
+func process_gravity(delta : float) -> void:
 	if !apply_gravity:
 		return
 	linear_velocity += gravity_vector * GRAVITY * MASS * delta 
 
-func process_movement(delta) -> void:
+func process_movement(delta : float) -> void:
 	pass
 
 #	life
@@ -82,5 +84,14 @@ func set_facing(value: int = FacingDirs.RIGHT) -> void:
 	if SpriteNode:
 		SpriteNode.flip_h = FacingDirs.get_h_flip(facing)
 
+func set_player_to_follow(value : Player) -> void:
+	player_to_follow = value
 
 
+################################
+#	Signals
+func _on_ViewArea_entered(area : Area2D) -> void:
+	if !passive:
+		if area.has_method("get_player"):
+			call_deferred("set_player_to_follow", area.get_player())
+		

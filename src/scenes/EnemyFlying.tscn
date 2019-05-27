@@ -4,23 +4,11 @@
 [ext_resource path="res://scripts/EnemyFlying.gd" type="Script" id=2]
 [ext_resource path="res://assests/images/enemy-wide.png" type="Texture" id=3]
 [ext_resource path="res://assests/collisions/bodies/EnemyFlying.body.tres" type="Shape2D" id=4]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 64.0
+[ext_resource path="res://assests/collisions/views/EnemyFlying.view.tres" type="Shape2D" id=5]
 
 [node name="EnemyFlying" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-passive = false
 view_distance = 64.0
-view_angle = 120.0
-attack_range = 1.0
-attack_delay = 0.01
-apply_gravity = true
-gravity_vector = Vector2( 0, 1 )
-GRAVITY = 9.8
-MASS = 20.0
-MOVEMENT_SPEED = 30
-facing = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
@@ -30,6 +18,4 @@ rotation = 1.5708
 shape = ExtResource( 4 )
 
 [node name="ViewAreaShape" parent="ViewArea" index="0"]
-shape = SubResource( 2 )
-
-[node name="Nav" type="Navigation2D" parent="." index="5"]
+shape = ExtResource( 5 )

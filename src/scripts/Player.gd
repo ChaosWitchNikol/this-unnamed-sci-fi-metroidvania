@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 #	DEFINE constants
 const FLOOR_VECTOR : Vector2 = Vector2(0, -1)
@@ -75,6 +76,13 @@ func _physics_process(delta : float) -> void:
 
 func process_gravity(delta : float) -> void:
 	linear_velocity.y += GRAVITY * MASS * delta
+
+################################
+#	Getters
+func get_player() -> Player:
+	return self
+#	Private getters
+
 
 
 #	DEFINE singals

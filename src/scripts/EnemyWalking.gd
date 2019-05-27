@@ -13,7 +13,7 @@ onready var FeelFront : RayCast2D = get_node("FeelFront")
 #	Custom functions
 #	processors
 ##	@Override
-func process_movement(delta) -> void:
+func process_movement(delta : float) -> void:
 	if is_on_floor():
 		if !FeelGround.is_colliding() or FeelFront.is_colliding() :
 			flip_facing()

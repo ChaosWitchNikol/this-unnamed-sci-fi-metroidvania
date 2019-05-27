@@ -64,6 +64,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/MovingPlatform.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scripts/Player.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerHurtBox",
+"language": "GDScript",
+"path": "res://scripts/Player.HurtBox.gd"
+}, {
 "base": "Object",
 "class": "Utils",
 "language": "GDScript",
@@ -81,6 +91,8 @@ _global_script_class_icons={
 "EnemyWalking": "",
 "FacingDirs": "",
 "MovingPlatform": "",
+"Player": "",
+"PlayerHurtBox": "",
 "Utils": ""
 }
 
