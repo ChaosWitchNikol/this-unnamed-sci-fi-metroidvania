@@ -3,34 +3,39 @@
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/EnemyCrawling.gd" type="Script" id=2]
 [ext_resource path="res://assests/images/enemy-small.png" type="Texture" id=3]
-[ext_resource path="res://assests/collisions/bodies/EnemyCrawling.body.tres" type="Shape2D" id=4]
-[ext_resource path="res://assests/collisions/views/EnemyCrawling.view.tres" type="Shape2D" id=5]
+[ext_resource path="res://assests/collisions/views/EnemyCrawling.view.tres" type="Shape2D" id=4]
 
-[node name="EnemyCrawling" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="EnemyCrawling" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-passive = false
-view_distance = 8.0
-view_angle = 120.0
-attack_range = 1.0
-attack_delay = 0.01
-apply_gravity = true
-gravity_vector = Vector2( 0, 1 )
-GRAVITY = 9.8
-MASS = 20.0
-MOVEMENT_SPEED = 30
-facing = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
 
 [node name="Body" parent="." index="1"]
-shape = ExtResource( 4 )
+shape = SubResource( 1 )
+
+[node name="ViewArea" parent="." index="3"]
+visible = false
 
 [node name="ViewAreaShape" parent="ViewArea" index="0"]
-shape = ExtResource( 5 )
+shape = ExtResource( 4 )
 
-[node name="Snout" type="RayCast2D" parent="." index="5"]
-position = Vector2( -2, 0 )
+[node name="GroundRayFront" type="RayCast2D" parent="." index="5"]
 enabled = true
-cast_to = Vector2( 0, 6 )
-collide_with_areas = true
+cast_to = Vector2( 8, 8 )
+
+[node name="GroundRayMid" type="RayCast2D" parent="." index="6"]
+enabled = true
+cast_to = Vector2( 0, 8 )
+
+[node name="GroundRayBack" type="RayCast2D" parent="." index="7"]
+position = Vector2( -4, 0 )
+enabled = true
+cast_to = Vector2( 0, 8 )
+
+[node name="RotationWaitTimer" type="Timer" parent="." index="8"]
+wait_time = 0.5
+one_shot = true

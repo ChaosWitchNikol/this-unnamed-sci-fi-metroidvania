@@ -1,63 +1,78 @@
 extends Enemy
 class_name EnemyCrawling
 
-enum SnoutDirs { DOWN = 0, LEFT = 1, UP = 2, RIGHT = 3 }
-# Down, Left, Up, Right
-const GravityVectors : Array = [Vector2.DOWN, Vector2.LEFT, Vector2.UP, Vector2.RIGHT]
-
-onready var Snout : RayCast2D = get_node("Snout")
-
-################################
-#	Life variables
-export(float, 4, 32) var snout_length : float = 4 setget set_snout_length
+onready var GroundRayFront : RayCast2D = get_node("GroundRayFront")
+onready var GroundRayMid : RayCast2D = get_node("GroundRayMid")
+onready var GroundRayBack : RayCast2D = get_node("GroundRayBack")
+onready var RotationWaitTimer : Timer = get_node("RotationWaitTimer")
 
 ################################
 #	Other variables
-var crawl_vector : Vector2 = Vector2()
-var snout_direction : int = SnoutDirs.DOWN
-var motion : Vector2 = Vector2()
 
-var touched_ground : bool = false
+var do_process_movement : bool = true
+var forward_direction_vector : Vector2 = Vector2(1, 0);
 
 func _ready() -> void:
-#	_set_snout_facing(facing)
-	calc_crawl_vector()
+	forward_direction_vector.x *= facing
+	GroundRayBack.position.x = -abs(GroundRayBack.position.x) * facing
+	GroundRayFront.cast_to.x = abs(GroundRayFront.cast_to.x) * facing
+	RotationWaitTimer.connect("timeout", self, "_on_RotationWaitTimer_timeout")
 
-func _physics_process(delta: float) -> void:
-	if !touched_ground:
-		if Snout.is_colliding():
-			touched_ground = true
 
 ################################
 #	Custom functions
 #	processors
 ##	@Override
 func process_movement(delta : float) -> void:
-	process_rotation()
-	motion = Vector2()
-	motion = crawl_vector * MOVEMENT_SPEED
-	if crawl_vector.x != 0:
-		linear_velocity.x = motion.x
-	if crawl_vector.y != 0:
-		linear_velocity.y = motion.y
-	pass
+	if apply_gravity and is_on_floor():
+		apply_gravity = false
 
-func process_rotation() -> void:
-	if touched_ground and !Snout.is_colliding():
-		snout_direction += facing
-		if snout_direction < SnoutDirs.DOWN:
-			snout_direction = SnoutDirs.RIGHT
-		if snout_direction > SnoutDirs.RIGHT:
-			snout_direction = SnoutDirs.DOWN
-		self.gravity_vector = GravityVectors[snout_direction]
-	pass
+	if do_process_movement:
+		if !is_colliding() and !is_on_floor():
+			# completly stop movement
+			linear_velocity = Vector2()
+			next_rotation()
+			RotationWaitTimer.start()
+			do_process_movement = false
+			return
+		
+		linear_velocity = forward_direction_vector * MOVEMENT_SPEED
+
 
 #	calculators
-func calc_crawl_vector() -> void:
-	crawl_vector = gravity_vector.rotated(-facing * deg2rad(90))
-	print(crawl_vector)
 
 #	other custom functions
+func is_colliding() -> bool:
+	return GroundRayBack.is_colliding() or GroundRayMid.is_colliding() or GroundRayFront.is_colliding()
+
+
+func next_rotation() -> void:
+	var add_degrees: float = 90.0
+	if is_on_wall():
+		add_degrees *= -1
+	rotation_degrees = round(rotation_degrees + add_degrees * facing)
+	
+	if rotation_degrees < 0:
+		rotation_degrees += 360
+	
+	
+	print(rotation_degrees)
+	
+	# rodation degrees to rotation in radians
+	var rotation_radians : float = deg2rad(rotation_degrees * facing)
+	# calculate forward direction
+	forward_direction_vector = Vector2(cos(rotation_radians), sin(rotation_radians))
+	print(forward_direction_vector)
+	if round(abs(forward_direction_vector.x)) == 0:
+		forward_direction_vector.x = 0
+	if round(abs(forward_direction_vector.y)) == 0:
+		forward_direction_vector.y = 0
+	# rotation degrees to rotation in radians offest by -90 degrees 
+	# to calculate down
+	var rotation_radians_offset : float = deg2rad(rotation_radians - 90.0 )
+	self.gravity_vector = Vector2(cos(rotation_radians_offset), sin(rotation_radians_offset))
+	
+
 
 
 ################################
@@ -66,23 +81,8 @@ func calc_crawl_vector() -> void:
 
 ################################
 #	Setters
-##	@Override
-func set_facing(value : int = FacingDirs.RIGHT) -> void:
-	.set_facing(value)
-	if Snout:
-		_set_snout_facing(value)
-	calc_crawl_vector()
 
-##	@Override
-func set_gravity_vector(value : Vector2 = Vector2(0, 1)) -> void:
-	.set_gravity_vector(value)
-	calc_crawl_vector()
-
-func set_snout_length(value : float = 4) -> void:
-	snout_length = value
-	Snout.cast_to = gravity_vector * snout_length
-
-#	Private setters
-func _set_snout_facing(facing : int = FacingDirs.RIGTH) -> void:
-	#	this will always flip the snout facing without being child of $Sprite
-	Snout.position.x = abs(Snout.position.x) * facing
+################################
+#	Signals
+func _on_RotationWaitTimer_timeout() -> void:
+	do_process_movement = true

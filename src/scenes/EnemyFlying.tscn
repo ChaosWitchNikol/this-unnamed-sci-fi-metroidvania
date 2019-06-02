@@ -6,7 +6,7 @@
 [ext_resource path="res://assests/collisions/bodies/EnemyFlying.body.tres" type="Shape2D" id=4]
 [ext_resource path="res://assests/collisions/views/EnemyFlying.view.tres" type="Shape2D" id=5]
 
-[node name="EnemyFlying" index="0" instance=ExtResource( 1 )]
+[node name="EnemyFlying" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 view_distance = 64.0
 
@@ -16,6 +16,9 @@ texture = ExtResource( 3 )
 [node name="Body" parent="." index="1"]
 rotation = 1.5708
 shape = ExtResource( 4 )
+
+[node name="ViewArea" parent="." index="3"]
+editor/display_folded = true
 
 [node name="ViewAreaShape" parent="ViewArea" index="0"]
 shape = ExtResource( 5 )
