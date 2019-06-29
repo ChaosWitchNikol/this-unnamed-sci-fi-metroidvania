@@ -5,19 +5,8 @@
 [ext_resource path="res://assests/collisions/bodies/EnemyWalking.body.tres" type="Shape2D" id=3]
 [ext_resource path="res://assests/collisions/views/EnemyWalking.view.tres" type="Shape2D" id=4]
 
-[node name="EnemyWalking" instance=ExtResource( 1 )]
+[node name="EnemyWalking" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-passive = false
-view_distance = 8.0
-view_angle = 120.0
-attack_range = 1.0
-attack_delay = 0.01
-apply_gravity = true
-gravity_vector = Vector2( 0, 1 )
-GRAVITY = 9.8
-MASS = 20.0
-MOVEMENT_SPEED = 30
-facing = 1
 
 [node name="Body" parent="." index="1"]
 shape = ExtResource( 3 )

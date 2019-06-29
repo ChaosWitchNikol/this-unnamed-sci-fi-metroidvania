@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/EnemyCrawling.new.gd" type="Script" id=2]
+[ext_resource path="res://assests/images/enemy-small.png" type="Texture" id=3]
+[ext_resource path="res://assests/collisions/bodies/EnemyCrawling.new.body.tres" type="Shape2D" id=4]
+[ext_resource path="res://assests/collisions/views/EnemyCrawling.new.view.tres" type="Shape2D" id=5]
+
+[node name="EnemyCrawling" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+MOVEMENT_SPEED = 5
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="Body" parent="." index="1"]
+shape = ExtResource( 4 )
+
+[node name="ViewAreaShape" parent="ViewArea" index="0"]
+shape = ExtResource( 5 )
+
+[node name="GroundRay" type="RayCast2D" parent="." index="5"]
+position = Vector2( 5, 0 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+
+[node name="FrontRay" type="RayCast2D" parent="." index="6"]
+enabled = true
+cast_to = Vector2( 5, 0 )

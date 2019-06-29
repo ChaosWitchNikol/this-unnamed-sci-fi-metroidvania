@@ -20,6 +20,7 @@ func process_movement(delta : float) -> void:
 		linear_velocity.x = MOVEMENT_SPEED * facing
 
 #	life
+##	@Override
 func flip_facing() -> void:
 	.flip_facing()
 	FeelGround.position.x = abs(FeelGround.position.x) * facing
