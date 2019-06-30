@@ -5,8 +5,8 @@
 [ext_resource path="res://@EditorTools/scenes/MovingPlatformPoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assests/tilesets/base.tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://scenes/EnemyWalking.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/EnemyCrawling.new.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/EnemyFlying.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/EnemyFlying.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/EnemyCrawling.new2.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 
@@ -60,9 +60,8 @@ tile_data = PoolIntArray( -327608, 5, 0, -327607, 5, 0, -327606, 5, 0, -327605, 
 [node name="EnemyWalking" parent="enemies" instance=ExtResource( 5 )]
 position = Vector2( 120, 200 )
 
-[node name="EnemyCrawling" parent="enemies" instance=ExtResource( 6 )]
-position = Vector2( 136, 152 )
-MASS = 1.0
-
-[node name="EnemyFlying" parent="enemies" instance=ExtResource( 7 )]
+[node name="EnemyFlying" parent="enemies" instance=ExtResource( 6 )]
 position = Vector2( 264, 152 )
+
+[node name="EnemyCrawling" parent="enemies" instance=ExtResource( 7 )]
+position = Vector2( 136, 120 )

@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://scripts/EnemyCrawling.gd"
 }, {
 "base": "Enemy",
+"class": "EnemyCrawlingNew2",
+"language": "GDScript",
+"path": "res://scripts/EnemyCrawling.new2.gd"
+}, {
+"base": "Enemy",
 "class": "EnemyFlying",
 "language": "GDScript",
 "path": "res://scripts/EnemyFlying.gd"
@@ -86,6 +91,7 @@ _global_script_class_icons={
 "EdiTools": "",
 "Enemy": "",
 "EnemyCrawling": "",
+"EnemyCrawlingNew2": "",
 "EnemyFlying": "",
 "EnemyStationary": "",
 "EnemyWalking": "",

@@ -6,7 +6,7 @@
 [ext_resource path="res://assests/collisions/bodies/EnemyCrawling.new.body.tres" type="Shape2D" id=4]
 [ext_resource path="res://assests/collisions/views/EnemyCrawling.new.view.tres" type="Shape2D" id=5]
 
-[node name="EnemyCrawling" index="0" instance=ExtResource( 1 )]
+[node name="EnemyCrawling" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 MOVEMENT_SPEED = 5
 
@@ -15,6 +15,9 @@ texture = ExtResource( 3 )
 
 [node name="Body" parent="." index="1"]
 shape = ExtResource( 4 )
+
+[node name="ViewArea" parent="." index="3"]
+editor/display_folded = true
 
 [node name="ViewAreaShape" parent="ViewArea" index="0"]
 shape = ExtResource( 5 )
