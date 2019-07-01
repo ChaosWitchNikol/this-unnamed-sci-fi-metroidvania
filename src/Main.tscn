@@ -63,3 +63,8 @@ position = Vector2( 400, 136 )
 position = Vector2( 144, 154 )
 MOVEMENT_SPEED = 10
 facing = -1
+
+[node name="EnemyCrawling4" parent="enemies" instance=ExtResource( 6 )]
+position = Vector2( 192, 152 )
+MOVEMENT_SPEED = 10
+facing = -1

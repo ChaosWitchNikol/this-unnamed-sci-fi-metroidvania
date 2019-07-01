@@ -14,6 +14,7 @@ var forward_vector : Vector2
 
 func _ready() -> void:
 	calc_forward_vector()
+	FeelFront.cast_to.x *= facing
 
 ################################
 #	Custom functions
@@ -47,13 +48,16 @@ func process_rotation(rotation_type : int ) -> void:
 	linear_velocity = Vector2()
 	position = position.round()
 	
-	var test_rotation_degrees : float = round(rotation_degrees + 90 * rotation_type)
+	var test_rotation_degrees : float = round(rotation_degrees + (90 * facing) * rotation_type)
 	if test_rotation_degrees < 0:
 		test_rotation_degrees = round(360.0 + test_rotation_degrees)
 	elif test_rotation_degrees > 360:
 		test_rotation_degrees = round(test_rotation_degrees - 360.0)
 	
+	print(test_move(Transform2D(test_rotation_degrees, position), gravity_vector, false))
+	
 	if test_move(Transform2D(test_rotation_degrees, position), position):
+		position += gravity_vector
 		rotation_degrees = test_rotation_degrees
 		calc_next_gravity_and_forward_vector(rotation_type)
 
@@ -76,6 +80,7 @@ func calc_forward_vector() -> void:
 ##	@Override
 func flip_facing() -> void:
 	.flip_facing()
+	calc_forward_vector()
 	FeelFront.position.x = abs(FeelFront.position.x) * facing
 	FeelFront.cast_to.x = abs(FeelFront.cast_to.x) * facing
 
