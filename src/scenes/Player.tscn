@@ -12,6 +12,7 @@ height = 8.0
 extents = Vector2( 4, 8 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 collision/safe_margin = 0.005
 script = ExtResource( 1 )
 
