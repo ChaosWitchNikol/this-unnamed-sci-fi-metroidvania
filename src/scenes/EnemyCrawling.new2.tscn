@@ -27,23 +27,19 @@ visible = false
 collision_layer = 2
 
 [node name="GroundBack" type="RayCast2D" parent="." index="6"]
-visible = false
 position = Vector2( -4, 0 )
 enabled = true
 cast_to = Vector2( 0, 8 )
 
 [node name="GroundMid" type="RayCast2D" parent="." index="7"]
-visible = false
 enabled = true
 cast_to = Vector2( 0, 8 )
 
 [node name="GroundFront" type="RayCast2D" parent="." index="8"]
-visible = false
 position = Vector2( 4, 0 )
 enabled = true
 cast_to = Vector2( 0, 8 )
 
-[node name="Back" type="RayCast2D" parent="." index="9"]
-visible = false
+[node name="FeelFront" type="RayCast2D" parent="." index="9"]
 enabled = true
-cast_to = Vector2( -8, 0 )
+cast_to = Vector2( 4.1, 0 )
