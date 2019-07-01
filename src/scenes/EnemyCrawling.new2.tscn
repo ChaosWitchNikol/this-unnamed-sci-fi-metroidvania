@@ -22,6 +22,7 @@ shape = ExtResource( 5 )
 disabled = true
 
 [node name="ViewArea" parent="." index="4"]
+editor/display_folded = true
 collision_layer = 2
 
 [node name="GroundBack" type="RayCast2D" parent="." index="6"]
@@ -34,6 +35,9 @@ enabled = true
 cast_to = Vector2( 0, 8 )
 
 [node name="GroundFront" type="RayCast2D" parent="." index="8"]
-position = Vector2( 6, 0 )
+position = Vector2( 4, 0 )
 enabled = true
 cast_to = Vector2( 0, 8 )
+
+[node name="Face" type="RayCast2D" parent="." index="9"]
+cast_to = Vector2( 4, 0 )
